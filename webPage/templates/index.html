@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>rPi Webpage</title>
+    </head>
+    <body>
+		<h1>Hello World!</h1>
+	</body>
+	<script>
+	function main(){
+		var images = JSON.parse('{{images|safe}}');			//Get array of images from backend
+		var i = 0;
+		document.body.style.backgroundSize = "cover";		//I just don't feel the need for separate css/js file
+		document.body.style.backgroundImage = "url('/static/"+images[i]+"')";
+		document.body.style.backgroundRepeat = "no-repeat";
+		setInterval(function(){
+			i++;
+			if (i == images.length) i = 0;	//Just keep cycling through the pictures.
+			document.body.style.backgroundImage = "url('/static/"+images[i]+"')";
+		}, 1000*3);
+	}
+	main();
+	</script>
+</html>
